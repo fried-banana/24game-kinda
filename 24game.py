@@ -120,7 +120,6 @@ def show_Question(qLen):
     screen.blit(question, (questionLength[qLen] + 120, 20))
 
 
-
 # HALL OF FAME
 '''
 def show_question1():
@@ -180,10 +179,11 @@ def reset():
     operator = ' '
     mousePosX, mousePosY = 0, 0
 
+fontSize = [0, 150, 150, 125, 100]
+
 def changeToNumFont(num):
-    numfont = pygame.font.Font('supermarket.ttf',150)
+    numfont = pygame.font.Font('supermarket.ttf', fontSize[len(str(num))])
     return numfont.render(str(num), True, (255, 0, 0))
-    
 
 def selectOperator():
     global operator
@@ -267,10 +267,10 @@ while running:
     screen.blit(divideIcon, (534 + 50 + 20, 650))
     screen.blit(resetIcon, (672, 0))
     #centertext
-    screen.blit(changeToNumFont(numberInBlock[0]), changeToNumFont(numberInBlock[0]).get_rect(center = ((190 + 100 ), (150 + 100 + 10 ))))
-    screen.blit(changeToNumFont(numberInBlock[1]), changeToNumFont(numberInBlock[1]).get_rect(center = ((420 + 100), (150 + 100 + 10 ))))
-    screen.blit(changeToNumFont(numberInBlock[2]), changeToNumFont(numberInBlock[2]).get_rect(center = ((190 + 100), (400 + 100 + 10 ))))
-    screen.blit(changeToNumFont(numberInBlock[3]), changeToNumFont(numberInBlock[3]).get_rect(center = ((420 + 100), (400 + 100 + 10 ))))
+    screen.blit(changeToNumFont(numberInBlock[0]), changeToNumFont(numberInBlock[0]).get_rect(center = (190 + 100, 150 + 100 + 10 )))
+    screen.blit(changeToNumFont(numberInBlock[1]), changeToNumFont(numberInBlock[1]).get_rect(center = (420 + 100, 150 + 100 + 10 )))
+    screen.blit(changeToNumFont(numberInBlock[2]), changeToNumFont(numberInBlock[2]).get_rect(center = (190 + 100, 400 + 100 + 10 )))
+    screen.blit(changeToNumFont(numberInBlock[3]), changeToNumFont(numberInBlock[3]).get_rect(center = (420 + 100, 400 + 100 + 10 )))
     #
 
     # No Action
