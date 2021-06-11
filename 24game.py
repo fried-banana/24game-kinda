@@ -172,30 +172,9 @@ def selectnum():
        fourthnumbox.fill((158, 158, 158))
        selectNumCount = 1
        num = block04
-    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=150 and mouseposy <=350 :
-       firstnumbox.fill((192,192,192))
-       secondnumbox.fill((192,192,192))
-       thirdnumbox.fill((192,192,192))
-       fourthnumbox.fill((192,192,192))
-       selectNumCount = 0
-    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=150 and mouseposy <=350 :
-       firstnumbox.fill((192,192,192))
-       secondnumbox.fill((192,192,192))
-       thirdnumbox.fill((192,192,192))
-       fourthnumbox.fill((192,192,192))  
-       selectNumCount = 0
-    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=400 and mouseposy <=600 :
-       firstnumbox.fill((192,192,192))
-       secondnumbox.fill((192,192,192))
-       thirdnumbox.fill((192,192,192))
-       fourthnumbox.fill((192,192,192))  
-       selectNumCount = 0
-    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=400 and mouseposy <=600 :
-       firstnumbox.fill((192,192,192))
-       secondnumbox.fill((192,192,192))
-       thirdnumbox.fill((192,192,192))
-       fourthnumbox.fill((192,192,192))
-       selectNumCount = 0
+    
+   
+   
     else :
         firstnumbox.fill((192,192,192))
         secondnumbox.fill((192,192,192))
@@ -266,7 +245,13 @@ def selectOption():
 def calculate(a, opr, b):
     if opr == '+':
         return a + b
-
+    elif opr == '-':
+        return a - b
+    elif opr == '*':
+        return a * b
+    elif opr == '/':
+        return a/b
+totalsum = []
 running = True
 
 while running:
@@ -319,6 +304,8 @@ while running:
         operator = ' '
         print(res)
         print(calculateList)
+        totalsum.append(res)
+        print(totalsum)
         mouseposx, mouseposy = 0, 0
 
     pygame.display.update()
