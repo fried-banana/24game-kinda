@@ -122,57 +122,58 @@ def show_question4():
 
 mouseposx = 0
 mouseposy = 0
-selectnumconunt = 0
+selectNumCount = 0
 def selectnum():
-    
-    if mouseposx >= 190 and mouseposx <=390  and mouseposy >=150 and mouseposy <=350 and selectnumconunt == 0:
+   
+    global selectNumCount
+    if mouseposx >= 190 and mouseposx <=390  and mouseposy >=150 and mouseposy <=350 and selectNumCount == 0:
        firstnumbox.fill((158, 158, 158))
        secondnumbox.fill((192,192,192))
        thirdnumbox.fill((192,192,192))
        fourthnumbox.fill((192,192,192))
-       selectnumconunt = 1
-    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=150 and mouseposy <=350 and selectnumconunt == 0:
+       selectNumCount = 1
+    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=150 and mouseposy <=350 and selectNumCount == 0:
        firstnumbox.fill((192,192,192))
        secondnumbox.fill((158, 158, 158))
        thirdnumbox.fill((192,192,192))
        fourthnumbox.fill((192,192,192))  
-       selectnumconunt = 1
-    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=400 and mouseposy <=600 and selectnumconunt == 0:
+       selectNumCount = 1
+    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=400 and mouseposy <=600 and selectNumCount == 0:
        firstnumbox.fill((192,192,192))
        secondnumbox.fill((192,192,192))
        thirdnumbox.fill((158, 158, 158))
        fourthnumbox.fill((192,192,192))  
-       selectnumconunt = 1
-    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=400 and mouseposy <=600 and selectnumconunt == 0:
+       selectNumCount = 1
+    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=400 and mouseposy <=600 and selectNumCount == 0:
        firstnumbox.fill((192,192,192))
        secondnumbox.fill((192,192,192))
        thirdnumbox.fill((192,192,192))
        fourthnumbox.fill((158, 158, 158))
-       selectnumconunt = 1
-    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=150 and mouseposy <=350 and selectnumconunt == 1:
-       firstnumbox.fill((158, 158, 158))
+       selectNumCount = 1
+    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=150 and mouseposy <=350 and selectNumCount == 1:
+       firstnumbox.fill((192,192,192))
        secondnumbox.fill((192,192,192))
        thirdnumbox.fill((192,192,192))
        fourthnumbox.fill((192,192,192))
-       selectnumconunt = 0
-    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=150 and mouseposy <=350 and selectnumconunt == 1:
-       firstnumbox.fill((192,192,192))
-       secondnumbox.fill((158, 158, 158))
-       thirdnumbox.fill((192,192,192))
-       fourthnumbox.fill((192,192,192))  
-       selectnumconunt = 0
-    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=400 and mouseposy <=600 and selectnumconunt == 1:
-       firstnumbox.fill((192,192,192))
-       secondnumbox.fill((192,192,192))
-       thirdnumbox.fill((158, 158, 158))
-       fourthnumbox.fill((192,192,192))  
-       selectnumconunt = 0
-    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=400 and mouseposy <=600 and selectnumconunt == 1:
+       selectNumCount = 0
+    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=150 and mouseposy <=350 and selectNumCount == 1:
        firstnumbox.fill((192,192,192))
        secondnumbox.fill((192,192,192))
        thirdnumbox.fill((192,192,192))
-       fourthnumbox.fill((158, 158, 158))
-       selectnumconunt = 0
+       fourthnumbox.fill((192,192,192))  
+       selectNumCount = 0
+    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=400 and mouseposy <=600 and selectNumCount == 1:
+       firstnumbox.fill((192,192,192))
+       secondnumbox.fill((192,192,192))
+       thirdnumbox.fill((192,192,192))
+       fourthnumbox.fill((192,192,192))  
+       selectNumCount = 0
+    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=400 and mouseposy <=600 and selectNumCount == 1:
+       firstnumbox.fill((192,192,192))
+       secondnumbox.fill((192,192,192))
+       thirdnumbox.fill((192,192,192))
+       fourthnumbox.fill((192,192,192))
+       selectNumCount = 0
 
 
 def selectoperator():
@@ -203,7 +204,9 @@ def selectoperator():
 
 
 running = True
+
 while running:
+ 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
