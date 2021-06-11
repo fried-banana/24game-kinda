@@ -13,7 +13,6 @@ while k==1 :
     for i in range(4):
         list.append(random.randint(1, 9))
 
-
     number = list
     
     print(number)
@@ -21,7 +20,7 @@ while k==1 :
     print(number)
 
     opt = ('+','-','*','/')
-    cur_opt = random.randint(0,3)
+    cur_opt = random.randint(0, 3)
     if cur_opt == 0:
         ans1 = number[0]+number[1]
     elif cur_opt == 1:
