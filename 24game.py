@@ -126,67 +126,89 @@ selectNumCount = 0
 def selectnum():
    
     global selectNumCount
-    if mouseposx >= 190 and mouseposx <=390  and mouseposy >=150 and mouseposy <=350 and selectNumCount == 0:
+    if mouseposx >= 190 and mouseposx <=390  and mouseposy >=150 and mouseposy <=350 :
        firstnumbox.fill((158, 158, 158))
        secondnumbox.fill((192,192,192))
        thirdnumbox.fill((192,192,192))
        fourthnumbox.fill((192,192,192))
        selectNumCount = 1
-    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=150 and mouseposy <=350 and selectNumCount == 0:
+    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=150 and mouseposy <=350 :
        firstnumbox.fill((192,192,192))
        secondnumbox.fill((158, 158, 158))
        thirdnumbox.fill((192,192,192))
        fourthnumbox.fill((192,192,192))  
        selectNumCount = 1
-    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=400 and mouseposy <=600 and selectNumCount == 0:
+    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=400 and mouseposy <=600 :
        firstnumbox.fill((192,192,192))
        secondnumbox.fill((192,192,192))
        thirdnumbox.fill((158, 158, 158))
        fourthnumbox.fill((192,192,192))  
        selectNumCount = 1
-    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=400 and mouseposy <=600 and selectNumCount == 0:
+    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=400 and mouseposy <=600 :
        firstnumbox.fill((192,192,192))
        secondnumbox.fill((192,192,192))
        thirdnumbox.fill((192,192,192))
        fourthnumbox.fill((158, 158, 158))
        selectNumCount = 1
-    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=150 and mouseposy <=350 and selectNumCount == 1:
+    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=150 and mouseposy <=350 :
        firstnumbox.fill((192,192,192))
        secondnumbox.fill((192,192,192))
        thirdnumbox.fill((192,192,192))
        fourthnumbox.fill((192,192,192))
        selectNumCount = 0
-    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=150 and mouseposy <=350 and selectNumCount == 1:
+    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=150 and mouseposy <=350 :
        firstnumbox.fill((192,192,192))
        secondnumbox.fill((192,192,192))
        thirdnumbox.fill((192,192,192))
        fourthnumbox.fill((192,192,192))  
        selectNumCount = 0
-    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=400 and mouseposy <=600 and selectNumCount == 1:
+    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=400 and mouseposy <=600 :
        firstnumbox.fill((192,192,192))
        secondnumbox.fill((192,192,192))
        thirdnumbox.fill((192,192,192))
        fourthnumbox.fill((192,192,192))  
        selectNumCount = 0
-    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=400 and mouseposy <=600 and selectNumCount == 1:
+    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=400 and mouseposy <=600 :
        firstnumbox.fill((192,192,192))
        secondnumbox.fill((192,192,192))
        thirdnumbox.fill((192,192,192))
        fourthnumbox.fill((192,192,192))
        selectNumCount = 0
+    else :
+        firstnumbox.fill((192,192,192))
+        secondnumbox.fill((192,192,192))
+        thirdnumbox.fill((192,192,192))
+        fourthnumbox.fill((192,192,192))
+block01 = num01
+block02 = num02
+block03 = num03
+block04 = num04
+
+
+def reset():
+    global block01 , block02,   block03,    block04
+    block01 = num01
+    block02 = num02
+    block03 = num03
+    block04 = num04
 
 
 def selectoperator():
+    global block02
     if mouseposx >=70 and mouseposy >=650 and mouseposx <=198 and mouseposy <=778:
         operatoricon01.fill((158, 158, 158))
         operatoricon02.fill((192,192,192))
         operatoricon03.fill((192,192,192))
         operatoricon04.fill((192,192,192))
+        block02 = numfont.render(str(23),True,(255,0,0))
+
     elif mouseposx >=248 and mouseposy >=650 and mouseposx <=379 and mouseposy <=778:
         operatoricon01.fill((192,192,192))
         operatoricon02.fill((158, 158, 158))
         operatoricon03.fill((192,192,192))
         operatoricon04.fill((192,192,192))
+        reset()
+
     elif mouseposx >=426 and mouseposy >=650 and mouseposx <=554 and mouseposy <=778:
         operatoricon01.fill((192,192,192))
         operatoricon02.fill((192,192,192))
@@ -197,6 +219,9 @@ def selectoperator():
         operatoricon02.fill((192,192,192))
         operatoricon03.fill((192,192,192))
         operatoricon04.fill((158, 158, 158))
+
+
+
 
 
 
@@ -240,11 +265,11 @@ while running:
     screen.blit(minusicon,(178+50+20,650))
     screen.blit(multiplyicon,(356+50+20,650))
     screen.blit(divideicon,(534+50+20,650))
-    screen.blit(num01,(70+175,150+30))
-    screen.blit(num02,(300+175,150+30))
-    screen.blit(num03,(70+175,400+30))
-    screen.blit(num04,(300+175,400+30))
-
+    screen.blit(block01,(70+175,150+30))
+    screen.blit(block02,(300+175,150+30))
+    screen.blit(block03,(70+175,400+30))
+    screen.blit(block04,(300+175,400+30))
+    
     selectnum()
     selectoperator()
     
