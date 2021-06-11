@@ -81,7 +81,7 @@ thirdNumBox.fill(unselectedColor)
 fourthNumBox = pygame.Surface([200,200])
 fourthNumBox.fill(unselectedColor)
 font = pygame.font.Font('supermarket.ttf',150)
-numfont = pygame.font.Font('supermarket.ttf',200)
+numfont = pygame.font.Font('supermarket.ttf',150)
 
 # HALL OF FAME
 '''
@@ -118,6 +118,8 @@ questionLength = [0, 247, 231, 200, 155]
 def show_Question(qLen):
     question = font.render(str(ans_fin), True, (255, 0, 0))
     screen.blit(question, (questionLength[qLen] + 120, 20))
+
+
 
 # HALL OF FAME
 '''
@@ -179,7 +181,9 @@ def reset():
     mousePosX, mousePosY = 0, 0
 
 def changeToNumFont(num):
+    numfont = pygame.font.Font('supermarket.ttf',150)
     return numfont.render(str(num), True, (255, 0, 0))
+    
 
 def selectOperator():
     global operator
@@ -244,6 +248,7 @@ while running:
     
     # Question
     show_Question(len(str(ans_fin)))
+   
     #
 
     # Display
@@ -261,10 +266,11 @@ while running:
     screen.blit(multiplyIcon, (356 + 50 + 20, 650))
     screen.blit(divideIcon, (534 + 50 + 20, 650))
     screen.blit(resetIcon, (672, 0))
-    screen.blit(changeToNumFont(numberInBlock[0]), (70 + 175, 150 + 30))
-    screen.blit(changeToNumFont(numberInBlock[1]), (300 + 175, 150 + 30))
-    screen.blit(changeToNumFont(numberInBlock[2]), (70 + 175, 400 + 30))
-    screen.blit(changeToNumFont(numberInBlock[3]), (300 + 175, 400 + 30))
+    #centertext
+    screen.blit(changeToNumFont(numberInBlock[0]), changeToNumFont(numberInBlock[0]).get_rect(center = ((190 + 100 ), (150 + 100 + 10 ))))
+    screen.blit(changeToNumFont(numberInBlock[1]), changeToNumFont(numberInBlock[1]).get_rect(center = ((420 + 100), (150 + 100 + 10 ))))
+    screen.blit(changeToNumFont(numberInBlock[2]), changeToNumFont(numberInBlock[2]).get_rect(center = ((190 + 100), (400 + 100 + 10 ))))
+    screen.blit(changeToNumFont(numberInBlock[3]), changeToNumFont(numberInBlock[3]).get_rect(center = ((420 + 100), (400 + 100 + 10 ))))
     #
 
     # No Action
@@ -292,10 +298,12 @@ while running:
         numberInBlock[a] = ' '
         numberInBlock[b] = str(res)
         listOfResult.append(res)
+
         #
         # Correct Answer
         if len(listOfResult) == 3 and validAnswer(listOfResult[-1]):
             print('Correct')
+    
         #
         mousePosX, mousePosY = 0, 0
 
