@@ -98,11 +98,15 @@ operatoricon03.fill((192,192,192))
 operatoricon04 = pygame.Surface((128,128))
 operatoricon04.fill((192,192,192))
 
+resetIconSurface = pygame.Surface((128,128))
+resetIconSurface.fill((192,192,192))
+
+
 addicon = pygame.image.load('add.png')
 minusicon = pygame.image.load('minus.png')
 multiplyicon = pygame.image.load('crossed.png')
 divideicon = pygame.image.load('divide.png')
-
+reseticon = pygame.image.load('refreshing.png')
 
 
 
@@ -207,7 +211,7 @@ def selectoperator():
         operatoricon02.fill((158, 158, 158))
         operatoricon03.fill((192,192,192))
         operatoricon04.fill((192,192,192))
-        reset()
+       
 
     elif mouseposx >=426 and mouseposy >=650 and mouseposx <=554 and mouseposy <=778:
         operatoricon01.fill((192,192,192))
@@ -219,6 +223,12 @@ def selectoperator():
         operatoricon02.fill((192,192,192))
         operatoricon03.fill((192,192,192))
         operatoricon04.fill((158, 158, 158))
+
+def selectOption():
+    
+    if mouseposx >=672 and mouseposy >=0 and mouseposx <=800 and mouseposy <=128:
+        resetIconSurface.fill((158, 158, 158))
+        reset()
 
 
 
@@ -261,10 +271,12 @@ while running:
     screen.blit(operatoricon02,(178+50+20,650))
     screen.blit(operatoricon03,(356+50+20,650))
     screen.blit(operatoricon04,(534+50+20,650))
+    screen.blit(resetIconSurface,(672,0))
     screen.blit(addicon,(50+20,650))
     screen.blit(minusicon,(178+50+20,650))
     screen.blit(multiplyicon,(356+50+20,650))
     screen.blit(divideicon,(534+50+20,650))
+    screen.blit(reseticon,(672,0))
     screen.blit(block01,(70+175,150+30))
     screen.blit(block02,(300+175,150+30))
     screen.blit(block03,(70+175,400+30))
@@ -272,6 +284,7 @@ while running:
     
     selectnum()
     selectoperator()
+    selectOption()
     
 
     
