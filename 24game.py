@@ -1,45 +1,49 @@
 import random
 import pygame
 from pygame.constants import QUIT
-def ifint(n):
-    if isinstance(n,int):
-        return True
-    else:
-        return False
 
-list = []
-k=1
-while k==1 :
+def isInt(n):
+    return isinstance(n, int)
+
+unselectedColor = (192, 192, 192)
+selectedColor = (158, 158, 158)
+
+mousePosX = 0
+mousePosY = 0
+
+startNum = []
+
+operator = ' '
+
+while True:
     for i in range(4):
-        list.append(random.randint(1, 9))
+        startNum.append(random.randint(1, 9))
 
-    number = list
+    testData = startNum
     
-    print(number)
-    random.shuffle(number)
-    print(number)
-
-    opt = ('+','-','*','/')
+    random.shuffle(testData)
     cur_opt = random.randint(0, 3)
     if cur_opt == 0:
-        ans1 = number[0]+number[1]
+        ans1 = testData[0]+testData[1]
     elif cur_opt == 1:
-        ans1 = number[0]-number[1]
-    elif cur_opt ==2:
-        ans1 = number[0]*number[1]
+        ans1 = testData[0]-testData[1]
+    elif cur_opt == 2:
+        ans1 = testData[0]*testData[1]
     elif cur_opt == 3:
-        ans1 = number[0]/number[1]
+        ans1 = testData[0]/testData[1]
+
     print("first Half :" ,ans1)
 
     cur_opt = random.randint(0,3)
     if cur_opt == 0:
-        ans2 = number[2]+number[3]
+        ans2 = testData[2]+testData[3]
     elif cur_opt == 1:
-        ans2 = number[2]-number[3]
+        ans2 = testData[2]-testData[3]
     elif cur_opt ==2:
-        ans2 = number[2]*number[3]
+        ans2 = testData[2]*testData[3]
     elif cur_opt == 3:
-        ans2 = number[2]/number[3]
+        ans2 = testData[2]/testData[3]
+        
     print("Second Half :",ans2)
 
     cur_opt = random.randint(0,3)
@@ -54,69 +58,69 @@ while k==1 :
     
     print("final ans : ",ans_fin)
 
-    if ans_fin >=0 and ifint(ans_fin):
+    if ans_fin >=0 and isInt(ans_fin):
         print("ok")
         break
     else:
-        list.clear()
-
+        startNum.clear()
 
 pygame.init()
-
 
 screen = pygame.display.set_mode((800,800))
 pygame.display.set_caption("24Game kinda")
 
-firstnumbox = pygame.Surface([200,200])
-firstnumbox.fill((192,192,192))
+firstNumBox = pygame.Surface([200,200])
+firstNumBox.fill(unselectedColor)
 
-secondnumbox = pygame.Surface([200,200])
-secondnumbox.fill((192,192,192))
+secondNumBox = pygame.Surface([200,200])
+secondNumBox.fill(unselectedColor)
 
-thirdnumbox = pygame.Surface([200,200])
-thirdnumbox.fill((192,192,192))
+thirdNumBox = pygame.Surface([200,200])
+thirdNumBox.fill(unselectedColor)
 
-fourthnumbox = pygame.Surface([200,200])
-fourthnumbox.fill((192,192,192))
+fourthNumBox = pygame.Surface([200,200])
+fourthNumBox.fill(unselectedColor)
 font = pygame.font.Font('supermarket.ttf',150)
 numfont = pygame.font.Font('supermarket.ttf',200)
 
+# HALL OF FAME
 '''
-num01 = numfont.render(str(list[0]),True,(255,0,0))
-num02 = numfont.render(str(list[1]),True,(255,0,0))
-num03 = numfont.render(str(list[2]),True,(255,0,0))
-num04 = numfont.render(str(list[3]),True,(255,0,0))
+num01 = startNum[0]
+num02 = startNum[1]
+num03 = startNum[2]
+num04 = startNum[3]
 '''
 
-num01 = list[0]
-num02 = list[1]
-num03 = list[2]
-num04 = list[3]
+operatorIcon01 = pygame.Surface((128,128))
+operatorIcon01.fill(unselectedColor)
 
-operatoricon01 = pygame.Surface((128,128))
-operatoricon01.fill((192,192,192))
+operatorIcon02 = pygame.Surface((128,128))
+operatorIcon02.fill(unselectedColor)
 
-operatoricon02 = pygame.Surface((128,128))
-operatoricon02.fill((192,192,192))
+operatorIcon03 = pygame.Surface((128,128))
+operatorIcon03.fill(unselectedColor)
 
-operatoricon03 = pygame.Surface((128,128))
-operatoricon03.fill((192,192,192))
-
-operatoricon04 = pygame.Surface((128,128))
-operatoricon04.fill((192,192,192))
+operatorIcon04 = pygame.Surface((128,128))
+operatorIcon04.fill(unselectedColor)
 
 resetIconSurface = pygame.Surface((128,128))
-resetIconSurface.fill((192,192,192))
+resetIconSurface.fill(unselectedColor)
 
 
-addicon = pygame.image.load('add.png')
-minusicon = pygame.image.load('minus.png')
-multiplyicon = pygame.image.load('crossed.png')
-divideicon = pygame.image.load('divide.png')
-reseticon = pygame.image.load('refreshing.png')
+addIcon = pygame.image.load('add.png')
+minusIcon = pygame.image.load('minus.png')
+multiplyIcon = pygame.image.load('crossed.png')
+divideIcon = pygame.image.load('divide.png')
+resetIcon = pygame.image.load('refreshing.png')
 
+questionLength = [0, 247, 231, 200, 155]
 
+def show_Question(qLen):
+    question = font.render(str(ans_fin), True, (255, 0, 0))
+    screen.blit(question, (questionLength[qLen] + 120, 20))
 
+# HALL OF FAME
+'''
 def show_question1():
     question = font.render(str(ans_fin),True,(255,0,0))
     screen.blit(question, (247+120,20))
@@ -129,186 +133,171 @@ def show_question3():
 def show_question4():
     question = font.render(str(ans_fin),True,(255,0,0))
     screen.blit(question, (155+120,20))
+'''
 
-mouseposx = 0
-mouseposy = 0
-selectNumCount = 0
+calculatingList = []
 
-calculateList = []
-
-operator = ' '
-
-def selectnum():
-    global selectNumCount
+def selectNumber():
+    global calculatingList
     global operator
-    global calculateList
-    global operator
-    num = 0
-    if mouseposx >= 190 and mouseposx <=390  and mouseposy >=150 and mouseposy <=350 :
-       firstnumbox.fill((158, 158, 158))
-       secondnumbox.fill((192,192,192))
-       thirdnumbox.fill((192,192,192))
-       fourthnumbox.fill((192,192,192))
-       selectNumCount = 1
-       num = block01
-    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=150 and mouseposy <=350 :
-       firstnumbox.fill((192,192,192))
-       secondnumbox.fill((158, 158, 158))
-       thirdnumbox.fill((192,192,192))
-       fourthnumbox.fill((192,192,192))  
-       selectNumCount = 1
-       num = block02
-    elif mouseposx >= 190 and mouseposx <=390  and mouseposy >=400 and mouseposy <=600 :
-       firstnumbox.fill((192,192,192))
-       secondnumbox.fill((192,192,192))
-       thirdnumbox.fill((158, 158, 158))
-       fourthnumbox.fill((192,192,192))  
-       selectNumCount = 1
-       num = block03
-    elif mouseposx >= 420 and mouseposx <=620  and mouseposy >=400 and mouseposy <=600 :
-       firstnumbox.fill((192,192,192))
-       secondnumbox.fill((192,192,192))
-       thirdnumbox.fill((192,192,192))
-       fourthnumbox.fill((158, 158, 158))
-       selectNumCount = 1
-       num = block04
-    
-   
-   
-    else :
-        firstnumbox.fill((192,192,192))
-        secondnumbox.fill((192,192,192))
-        thirdnumbox.fill((192,192,192))
-        fourthnumbox.fill((192,192,192))
+    firstNumBox.fill(unselectedColor)
+    secondNumBox.fill(unselectedColor)
+    thirdNumBox.fill((192 ,192, 192))
+    fourthNumBox.fill(unselectedColor)
+    idx = 0
+    if mousePosX >= 190 and mousePosX <= 390 and mousePosY >= 150 and mousePosY <= 350:
+       firstNumBox.fill(selectedColor)
+       idx = 0
+    elif mousePosX >= 420 and mousePosX <= 620 and mousePosY >= 150 and mousePosY <= 350:
+       secondNumBox.fill(selectedColor)
+       idx = 1
+    elif mousePosX >= 190 and mousePosX <= 390 and mousePosY >= 400 and mousePosY <= 600:
+       thirdNumBox.fill(selectedColor)
+       idx = 2
+    elif mousePosX >= 420 and mousePosX <= 620 and mousePosY >= 400 and mousePosY <= 600:
+       fourthNumBox.fill(selectedColor)
+       idx = 3
+    else:
         return
-    #print('I Select ', end = ' ')
-    #print(num)
-    if(len(calculateList)==0):
-        calculateList.append(num)
-    elif operator != ' ':
-        calculateList.append(num)
+    if numberInBlock[idx] == ' ':
+        return
+    if idx in calculatingList:
+        return
+    if operator != ' ':
+        calculatingList.append(idx)
+    elif(len(calculatingList) <= 1):
+        calculatingList = [idx]
 
-block01 = num01
-block02 = num02
-block03 = num03
-block04 = num04
-
-
+numberInBlock = [str(num) for num in startNum]
 
 def reset():
-    global block01, block02, block03, block04
-    block01 = num01
-    block02 = num02
-    block03 = num03
-    block04 = num04
+    global numberInBlock
+    print('reset')
+    numberInBlock = [str(num) for num in startNum]
+    listOfResult.clear()
     operator = ' '
+    mousePosX, mousePosY = 0, 0
 
 def changeToNumFont(num):
     return numfont.render(str(num), True, (255, 0, 0))
 
-def selectoperator():
+def selectOperator():
     global operator
-    if mouseposx >=70 and mouseposy >=650 and mouseposx <=198 and mouseposy <=778:
-        operatoricon01.fill((158, 158, 158))
-        operatoricon02.fill((192,192,192))
-        operatoricon03.fill((192,192,192))
-        operatoricon04.fill((192,192,192))
+    operatorIcon01.fill(unselectedColor)
+    operatorIcon02.fill(unselectedColor)
+    operatorIcon03.fill(unselectedColor)
+    operatorIcon04.fill(unselectedColor)
+    if mousePosX >= 70 and mousePosY >= 650 and mousePosX <= 198 and mousePosY <= 778:
+        operatorIcon01.fill(selectedColor)
         operator = '+'
-        #block02 = 23
+        # HALL OF FAME
+        # numberInBlock02 = 23
 
-    elif mouseposx >=248 and mouseposy >=650 and mouseposx <=379 and mouseposy <=778:
-        operatoricon01.fill((192,192,192))
-        operatoricon02.fill((158, 158, 158))
-        operatoricon03.fill((192,192,192))
-        operatoricon04.fill((192,192,192))
+    elif mousePosX >= 248 and mousePosY >= 650 and mousePosX <= 379 and mousePosY <= 778:
+        operatorIcon02.fill(selectedColor)
         operator = '-'
 
-    elif mouseposx >=426 and mouseposy >=650 and mouseposx <=554 and mouseposy <=778:
-        operatoricon01.fill((192,192,192))
-        operatoricon02.fill((192,192,192))
-        operatoricon03.fill((158, 158, 158))
-        operatoricon04.fill((192,192,192))
+    elif mousePosX >= 426 and mousePosY >= 650 and mousePosX <= 554 and mousePosY <= 778:
+        operatorIcon03.fill(selectedColor)
         operator = '*'
 
-    elif mouseposx >=604 and mouseposy >=650 and mouseposx <=732 and mouseposy <=778:
-        operatoricon01.fill((192,192,192))
-        operatoricon02.fill((192,192,192))
-        operatoricon03.fill((192,192,192))
-        operatoricon04.fill((158, 158, 158))
+    elif mousePosX >= 604 and mousePosY >= 650 and mousePosX <= 732 and mousePosY <= 778:
+        operatorIcon04.fill(selectedColor)
         operator = '/'
 
 def selectOption():
-    if mouseposx >=672 and mouseposy >=0 and mouseposx <=800 and mouseposy <=128:
-        resetIconSurface.fill((158, 158, 158))
+    global mousePosX, mousePosY
+    if mousePosX >= 672 and mousePosY >= 0 and mousePosX <= 800 and mousePosY <= 128:
+        resetIconSurface.fill(selectedColor)
         reset()
+    mousePosX, mousePosY = 0, 0
 
 def calculate(a, opr, b):
     if opr == '+':
         return a + b
-    elif opr == '-':
+    if opr == '-':
         return a - b
-    elif opr == '*':
+    if opr == '*':
         return a * b
-    elif opr == '/':
-        return a/b
-totalsum = []
+    if opr == '/':
+        if b == 0 or a % b != 0:
+            return 'INVALID'
+        return a / b
+
+def validAnswer(ans):
+    return ans == ans_fin
+
+listOfResult = []
+
 running = True
 
 while running:
+    pygame.display.update()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
-            mouseposx, mouseposy = pygame.mouse.get_pos()
-            print(mouseposx,mouseposy)
+            mousePosX, mousePosY = pygame.mouse.get_pos()
+            print(mousePosX, mousePosY)
     
-    screen.fill((255,255,255))
-    if ans_fin < 10:
-        show_question1()
-    elif ans_fin >=10 and ans_fin < 100:
-        show_question2()
-    elif ans_fin >999:
-        show_question4()
-    elif ans_fin >=100:
-        show_question3()
+    screen.fill((255, 255, 255))
     
-    screen.blit(firstnumbox,(70+120,150))
-    screen.blit(secondnumbox,(300+120,150))
-    screen.blit(thirdnumbox,(70+120,400))
-    screen.blit(fourthnumbox,(300+120,400))
-    screen.blit(operatoricon01,(50+20,650))
-    screen.blit(operatoricon02,(178+50+20,650))
-    screen.blit(operatoricon03,(356+50+20,650))
-    screen.blit(operatoricon04,(534+50+20,650))
-    screen.blit(resetIconSurface,(672,0))
-    screen.blit(addicon,(50+20,650))
-    screen.blit(minusicon,(178+50+20,650))
-    screen.blit(multiplyicon,(356+50+20,650))
-    screen.blit(divideicon,(534+50+20,650))
-    screen.blit(reseticon,(672,0))
-    screen.blit(changeToNumFont(block01),(70+175,150+30))
-    screen.blit(changeToNumFont(block02),(300+175,150+30))
-    screen.blit(changeToNumFont(block03),(70+175,400+30))
-    screen.blit(changeToNumFont(block04),(300+175,400+30))
-    
-    selectnum()
-    selectoperator()
-    selectOption()
-    #if(len(calculateList) > 0):
-    #    print(calculateList)
-    if(len(calculateList) == 2):
-        print('Calculate !')
-        print(calculateList)
-        res = calculate(calculateList[0], operator, calculateList[1])
-        calculateList.clear()
-        operator = ' '
-        print(res)
-        print(calculateList)
-        totalsum.append(res)
-        print(totalsum)
-        mouseposx, mouseposy = 0, 0
+    # Question
+    show_Question(len(str(ans_fin)))
+    #
 
-    pygame.display.update()
+    # Display
+    screen.blit(firstNumBox, (70 + 120, 150))
+    screen.blit(secondNumBox, (300 + 120, 150))
+    screen.blit(thirdNumBox, (70 + 120, 400))
+    screen.blit(fourthNumBox, (300 + 120, 400))
+    screen.blit(operatorIcon01, (50 + 20, 650))
+    screen.blit(operatorIcon02, (178 + 50 + 20, 650))
+    screen.blit(operatorIcon03, (356 + 50 + 20, 650))
+    screen.blit(operatorIcon04, (534 + 50 + 20, 650))
+    screen.blit(resetIconSurface, (672, 0))
+    screen.blit(addIcon, (50 + 20, 650))
+    screen.blit(minusIcon, (178 + 50 + 20, 650))
+    screen.blit(multiplyIcon, (356 + 50 + 20, 650))
+    screen.blit(divideIcon, (534 + 50 + 20, 650))
+    screen.blit(resetIcon, (672, 0))
+    screen.blit(changeToNumFont(numberInBlock[0]), (70 + 175, 150 + 30))
+    screen.blit(changeToNumFont(numberInBlock[1]), (300 + 175, 150 + 30))
+    screen.blit(changeToNumFont(numberInBlock[2]), (70 + 175, 400 + 30))
+    screen.blit(changeToNumFont(numberInBlock[3]), (300 + 175, 400 + 30))
+    #
+
+    # No Action
+    if mousePosX == 0 and mousePosY == 0:
+        continue
+    #
+
+    # Select Option
+    selectNumber()
+    selectOperator()
+    selectOption()
+    #
+
+    if len(calculatingList) == 2:
+        a = calculatingList[0]
+        b = calculatingList[1]
+        res = calculate(int(numberInBlock[a]), operator, int(numberInBlock[b]))
+        # Clear
+        calculatingList.clear()
+        operator = ' '
+        #
+        if res == 'INVALID':
+            continue
+        # Set Result
+        numberInBlock[a] = ' '
+        numberInBlock[b] = str(res)
+        listOfResult.append(res)
+        #
+        # Correct Answer
+        if len(listOfResult) == 3 and validAnswer(listOfResult[-1]):
+            print('Correct')
+        #
+        mousePosX, mousePosY = 0, 0
 
     
 
