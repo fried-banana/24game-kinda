@@ -183,6 +183,10 @@ def reset():
 def changeToNumFont(num):
     numfont = pygame.font.Font('supermarket.ttf',150)
     return numfont.render(str(num), True, (255, 0, 0))
+
+textcon = pygame.font.Font('supermarket.ttf',150)
+textCongrats = textcon.render("YOU WIN!", True, (0, 0, 0))
+
     
 
 def selectOperator():
@@ -231,6 +235,7 @@ def calculate(a, opr, b):
 def validAnswer(ans):
     return ans == ans_fin
 
+
 listOfResult = []
 
 running = True
@@ -252,10 +257,14 @@ while running:
     #
 
     # Display
-    screen.blit(firstNumBox, (70 + 120, 150))
-    screen.blit(secondNumBox, (300 + 120, 150))
-    screen.blit(thirdNumBox, (70 + 120, 400))
-    screen.blit(fourthNumBox, (300 + 120, 400))
+    if numberInBlock[0] != ' ':
+        screen.blit(firstNumBox, (70 + 120, 150))
+    if numberInBlock[1] != ' ':
+        screen.blit(secondNumBox, (300 + 120, 150))
+    if numberInBlock[2] != ' ':
+        screen.blit(thirdNumBox, (70 + 120, 400))
+    if numberInBlock[3] != ' ':
+        screen.blit(fourthNumBox, (300 + 120, 400))
     screen.blit(operatorIcon01, (50 + 20, 650))
     screen.blit(operatorIcon02, (178 + 50 + 20, 650))
     screen.blit(operatorIcon03, (356 + 50 + 20, 650))
@@ -271,6 +280,11 @@ while running:
     screen.blit(changeToNumFont(numberInBlock[1]), changeToNumFont(numberInBlock[1]).get_rect(center = ((420 + 100), (150 + 100 + 10 ))))
     screen.blit(changeToNumFont(numberInBlock[2]), changeToNumFont(numberInBlock[2]).get_rect(center = ((190 + 100), (400 + 100 + 10 ))))
     screen.blit(changeToNumFont(numberInBlock[3]), changeToNumFont(numberInBlock[3]).get_rect(center = ((420 + 100), (400 + 100 + 10 ))))
+    if len(listOfResult) == 3 and validAnswer(listOfResult[-1]):
+        screen.fill((255, 255, 255))
+        screen.blit(textCongrats, textCongrats.get_rect(center = (400, 400)))
+        screen.blit(resetIconSurface, (672, 0))
+        screen.blit(resetIcon, (672, 0))
     #
 
     # No Action
@@ -303,7 +317,9 @@ while running:
         # Correct Answer
         if len(listOfResult) == 3 and validAnswer(listOfResult[-1]):
             print('Correct')
-    
+           
+            
+        
         #
         mousePosX, mousePosY = 0, 0
 
