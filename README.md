@@ -1,2 +1,6 @@
 # 24game-kinda
-python/pygame
+
+install libaries
+```shell
+$ pip install -r requirements.txt
+```
