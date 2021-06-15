@@ -14,55 +14,59 @@ mousePosY = 0
 startNum = []
 
 operator = ' '
+def play(): 
+    while True:
+        for i in range(4):
+            startNum.append(random.randint(1, 9))
 
-while True:
-    for i in range(4):
-        startNum.append(random.randint(1, 9))
-
-    testData = startNum
+        testData = startNum
     
-    random.shuffle(testData)
-    cur_opt = random.randint(0, 3)
-    if cur_opt == 0:
-        ans1 = testData[0]+testData[1]
-    elif cur_opt == 1:
-        ans1 = testData[0]-testData[1]
-    elif cur_opt == 2:
-        ans1 = testData[0]*testData[1]
-    elif cur_opt == 3:
-        ans1 = testData[0]/testData[1]
+        random.shuffle(testData)
+        cur_opt = random.randint(0, 3)
+        if cur_opt == 0:
+            ans1 = testData[0]+testData[1]
+        elif cur_opt == 1:
+            ans1 = testData[0]-testData[1]
+        elif cur_opt == 2:
+            ans1 = testData[0]*testData[1]
+        elif cur_opt == 3:
+            ans1 = testData[0]/testData[1]
 
-    print("first Half :" ,ans1)
+        print("first Half :" ,ans1)
 
-    cur_opt = random.randint(0,3)
-    if cur_opt == 0:
-        ans2 = testData[2]+testData[3]
-    elif cur_opt == 1:
-        ans2 = testData[2]-testData[3]
-    elif cur_opt ==2:
-        ans2 = testData[2]*testData[3]
-    elif cur_opt == 3:
-        ans2 = testData[2]/testData[3]
+        cur_opt = random.randint(0,3)
+        if cur_opt == 0:
+            ans2 = testData[2]+testData[3]
+        elif cur_opt == 1:
+            ans2 = testData[2]-testData[3]
+        elif cur_opt ==2:
+            ans2 = testData[2]*testData[3]
+        elif cur_opt == 3:
+            ans2 = testData[2]/testData[3]
         
-    print("Second Half :",ans2)
+        print("Second Half :",ans2)
 
-    cur_opt = random.randint(0,3)
-    if cur_opt == 0:
-        ans_fin = ans1 + ans2
-    elif cur_opt == 1:
-        ans_fin = ans1 - ans2
-    elif cur_opt ==2:
-        ans_fin = ans1 * ans2
-    elif cur_opt == 3:
-        ans_fin = ans1 / ans2
+        cur_opt = random.randint(0,3)
+        if cur_opt == 0:
+            ans_fin = ans1 + ans2
+        elif cur_opt == 1:
+            ans_fin = ans1 - ans2
+        elif cur_opt ==2:
+            ans_fin = ans1 * ans2
+        elif cur_opt == 3:
+            ans_fin = ans1 / ans2
     
-    print("final ans : ",ans_fin)
+        print("final ans : ",ans_fin)
 
-    if ans_fin >=0 and isInt(ans_fin):
-        print("ok")
-        break
-    else:
-        startNum.clear()
+        if ans_fin >=0 and isInt(ans_fin):
+            print("ok")
+            return ans_fin
+            break
+        else:
+            startNum.clear()
+        
+
+ans_fin = play()
 
 pygame.init()
 
